@@ -41,18 +41,18 @@ def main():
     except:
         raise ValueError('Cannot read text file')
 
-    for entry in entries:
-        if entry.link != latest_entry_id:
-            markdown_summary = html_to_markdown(entry.summary)
-            message = f"*New Article*\n\n[{entry.title}]({entry.link})\n\n{markdown_summary}"
+    entry = entries[0]
+    if entry.link != latest_entry_id:
+        markdown_summary = html_to_markdown(entry.summary)
+        message = f"*New Article*\n\n[{entry.title}]({entry.link})\n\n{markdown_summary}"
 
-            send_to_telegram(bot_token, chat_id, message)
-            # Update the latest entry ID after successfully sending to Telegram
-            latest_entry_id = entry.link
-            text_file = open("latest_entry.txt", "w")
-            text_file.write(latest_entry_id)
-            text_file.close()
-            break
+        send_to_telegram(bot_token, chat_id, message)
+        # Update the latest entry ID after successfully sending to Telegram
+        latest_entry_id = entry.link
+        text_file = open("latest_entry.txt", "w")
+        text_file.write(latest_entry_id)
+        text_file.close()
+        
 
 if __name__ == "__main__":
     main()
