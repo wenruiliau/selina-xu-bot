@@ -3,7 +3,7 @@ name: Run RSS to Telegram
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'  # Run every 5 minutes
+    - cron: '*/15 * * * *'  # Run every 15 minutes
 
 jobs:
   build:
